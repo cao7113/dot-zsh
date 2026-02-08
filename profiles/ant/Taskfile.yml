@@ -1,0 +1,18 @@
+# https://taskfile.dev
+version: '3'
+tasks:
+  defuault: echo hi
+
+  p10k: |
+    echo "run: p10k configure 
+    # p10k is a function"
+
+  setup: |
+    mkdir -p _local
+    git clone --depth=1 https://github.com/mattmc3/antidote.git _local/antidote
+    # git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+
+  setup.brew: |
+    brew install antidote
+    # antidote_sh_path=$(brew --prefix antidote)/share/antidote/antidote.zsh
+ 

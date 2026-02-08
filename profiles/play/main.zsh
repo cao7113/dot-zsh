@@ -1,0 +1,1 @@
+echo "# play zsh here"

@@ -1,0 +1,32 @@
+# run towards the TOP of your .zsh_plugins.txt before any compdef calls
+mattmc3/ez-compinit
+# you can even add more completions later
+zsh-users/zsh-completions
+
+# --- 1. Oh My Zsh 核心库 (必须放在最前面) ---
+# 这提供了 OMZ 的基础函数支持，很多 OMZ 插件依赖它
+ohmyzsh/ohmyzsh path:lib
+
+# --- 2. Oh My Zsh 精选插件 (按需取用) ---
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/direnv
+# not work becuse missing $ZSH_CACHE_DIR
+ohmyzsh/ohmyzsh path:plugins/mise
+ohmyzsh/ohmyzsh path:plugins/extract      # 输入 x 即可解压各种压缩包
+ohmyzsh/ohmyzsh path:plugins/sudo         # 连按两下 Esc 自动加 sudo
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+
+# --- 3. 顶级社区插件 (比 OMZ 自带的强得多) ---
+zsh-users/zsh-autosuggestions             # 灰色历史预测
+zsh-users/zsh-syntax-highlighting         # 命令行高亮
+zsh-users/zsh-completions                 # 额外的补全增强
+zsh-users/zsh-history-substring-search    # 输入前缀后用上下键搜索历史
+
+# --- 4. 辅助工具集成 ---
+# 注意：你需要先 brew install zoxide fzf
+# nanotee/zoxide-executable                 # zoxide (替代 cd) 的集成
+# Aloxaf/fzf-tab                          # 让补全菜单也支持 fzf 搜索 (极力推荐)
+
+# --- 5. 主题 (Antidote 加载主题极快) ---
+romkatv/powerlevel10k
+

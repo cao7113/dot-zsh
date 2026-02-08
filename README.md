@@ -1,3 +1,24 @@
-# Welcome to Zsh
+# dsh, also as dot-zsh
 
-升级MacOS10.15后默认改为zsh了，是时候转变了！
+Personal customized zsh config.
+
+## Usage
+
+```
+# switch profiles (zsh config)
+dsh use [omz|ant|bare|play]
+
+# dotrc links
+dot ln /path/to/rc/file
+ls -l ~/.zsh_dots/
+```
+
+## How it works?
+
+- `task setup`
+- new session auto-load `~/.zshrc` as soft-link
+
+## Links
+
+[dotfiles on Github](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)

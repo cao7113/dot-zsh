@@ -1,0 +1,31 @@
+#!/usr/bin/env bash 
+
+<<Note
+ https://crazyof.me/blog/archives/2686.html
+ https://www.blackmoreops.com/2015/06/14/how-to-get-public-ip-from-linux-terminal/
+
+ ipinfo-cli from https://github.com/ipinfo/cli
+ brew install ipinfo-cli
+ alias myip="ipinfo myip"
+Note
+
+# "https://ip.cn"
+# "https://ip.sb"
+#  "https://ifconfig.cc"
+
+# Define an array with the list of URLs
+urls=(
+  "https://ifconfig.me"
+  "https://ip.gs"
+  "https://httpbin.org/ip"
+  "https://cip.cc"
+)
+
+# Loop through the array and curl each URL
+for url in "${urls[@]}"; do
+  echo "Fetching IP from: $url"
+  curl -L --connect-timeout 2000 --max-time 3 "$url"
+  echo -e "\n"  # Add a new line for better readability
+done
+
+# echo "${urls[@]}" | xargs -n 1 -P 5 -I {} bash -c 'echo "Fetching IP from: {}"; curl -L --max-time 5 --connect-timeout 2000 "{}"; echo -e "\n"'

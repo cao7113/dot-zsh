@@ -1,0 +1,25 @@
+# https://taskfile.dev
+version: '3'
+includes:
+  omz: profiles/omz/Taskfile.yml
+  ant: profiles/ant/Taskfile.yml
+tasks:
+  default: Happy with dsh!
+  bench: time zsh -lic "exit"
+  
+  setup: |
+    # ./setup.sh
+    task rc.link
+
+  rc: ls -ld ~/.z*
+  rc.link: 
+    aliases: [ln]
+    cmds: 
+    - |
+      ln -sf {{.TASKFILE_DIR}}/main.zsh ~/.zshrc
+      head -n 3 ~/.zshrc
+
+      mkdir -p _local
+      ln -sf ~/.tools _local
+  rc.rm: rm ~/.zshrc
+  
