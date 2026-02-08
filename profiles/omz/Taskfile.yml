@@ -1,0 +1,52 @@
+# https://taskfile.dev
+version: '3'
+vars:
+  omz_home: $DSH_HOME/profiles/omz
+  omz_repo_dir: $DSH_HOME/profiles/omz/_local/ohmyzsh
+tasks:
+  default: task info
+
+  info: |
+    echo "DSH_HOME: $DSH_HOME"
+    echo "omz_home: {{.omz_home}}"
+    echo "repo_dir: {{.omz_repo_dir}}"
+    echo "ZSH: $ZSH"
+    echo "ZSH_CACHE_DIR: $ZSH_CACHE_DIR"
+    echo "ZDOTDIR: $ZDOTDIR"
+
+  up: omz update
+
+  ln: |
+    task setup.local
+    ln -sf {{.omz_repo_dir}}/oh-my-zsh.sh _local
+    ln -sf {{.omz_repo_dir}}/lib _local
+    ln -sf {{.omz_repo_dir}}/templates/zshrc.zsh-template _local/zshrc-tmpl.zsh
+    ln -sf {{.omz_repo_dir}}/templates/minimal.zshrc _local/mini.zshrc
+    ln -sf {{.omz_repo_dir}}/tools _local
+    rm -f _local/plugin-git && ln -sf {{.omz_repo_dir}}/plugins/git _local/plugin-git
+  
+  diff.rc: |
+    diff .zshrc {{.omz_repo_dir}}/templates/zshrc.zsh-template
+  diff.install: |
+    # omz update 
+    diff install.sh {{.omz_repo_dir}}/tools/install.sh
+  
+  setup: |
+    # install_url=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    install_url=https://install.ohmyz.sh
+    
+    cd {{.omz_home}}
+    task setup.local
+    echo "## Fetching install script from $install_url"
+    curl -fsSL $install_url > install.sh
+    export ZDOTDIR={{.omz_home}} # only used here not global
+    echo "## Installing Oh My Zsh to {{.omz_repo_dir}}"
+    ZSH={{.omz_repo_dir}} sh install.sh --keep-zshrc --unattended
+
+    # REPO=apjanke/oh-my-zsh BRANCH=edge
+
+  setup.local: |
+    mkdir -p $(dirname {{.omz_repo_dir}})
+
+  install: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
