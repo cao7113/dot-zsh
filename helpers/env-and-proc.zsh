@@ -1,3 +1,6 @@
+alias pid="echo $$"
+alias psproc="ps -p $$" # ps current running process
+
 # 获取匹配某个进程的pids，如 nginx的
 function grepproc(){
   [ $# -lt 1 ] && return 1

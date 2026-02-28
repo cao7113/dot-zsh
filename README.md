@@ -11,9 +11,6 @@ dsh use [omz|ant|bare|play]
 # dotrc links
 dot ln /path/to/rc/file
 ls -l ~/.zsh_dots/
-
-# 或者查看当前正在运行的进程名
-ps -p $$
 ```
 
 ## How it works?
@@ -23,5 +20,5 @@ ps -p $$
 
 ## Links
 
-[dotfiles on Github](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
-[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
+- [dotfiles on Github](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+- [awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
