@@ -7,28 +7,10 @@ zstyle ':omz:lib:theme-and-appearance' gnu-ls yes
 
 # use helpers
 ZSH_CUSTOM=$DSH_HOME/helpers
-# gitignore
-plugins=(git direnv mise)
+# set plugins
+source $_DSH_PROFILE_DIR/plugins.zsh
 
 ## source omz gengerated .zshrc # NOTE: keep .zshrc not modified as possible!!!
 source $_DSH_PROFILE_DIR/.zshrc
 
 ## post customization
-
-function omz-plugin(){
-  local name=$1
-  local pdir=$ZSH/plugins/$name
-  if [ -d $pdir ]; then
-    local pfile=$pdir/$name.plugin.zsh
-    if [ -f $pfile ]; then
-      cat $pfile
-      echo
-      echo "# plugin file: $pfile"
-      echo "# plugin http: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/$name"
-    else
-      echo "Not found plugin file $pfile"
-    fi
-  else
-    echo "Not found plugin $pdir"
-  fi
-}

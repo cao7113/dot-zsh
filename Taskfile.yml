@@ -8,18 +8,14 @@ tasks:
   bench: time zsh -lic "exit"
   
   setup: |
-    # ./setup.sh
-    task rc.link
+    task rc.ln
+    
+    mkdir -p _local
+    ln -sf ~/.tools _local
 
   rc: ls -ld ~/.z*
-  rc.link: 
-    aliases: [ln]
-    cmds: 
-    - |
-      ln -sf {{.TASKFILE_DIR}}/main.zsh ~/.zshrc
-      head -n 3 ~/.zshrc
-
-      mkdir -p _local
-      ln -sf ~/.tools _local
+  rc.ln: |
+    ln -sf {{.TASKFILE_DIR}}/main.zsh ~/.zshrc
+    ln -sf {{.TASKFILE_DIR}} ~/.zsh
   rc.rm: rm ~/.zshrc
   

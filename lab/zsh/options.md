@@ -94,7 +94,10 @@ zsh -lx -c "some_command"
 setopt
 
 # 列出所有选项及其开关状态
-setopt -o
+set -o
+
+setopt autocd
+unsetopt autocd # same as: setopt no_autocd
 
 ```
 

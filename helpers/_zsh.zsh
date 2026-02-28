@@ -1,25 +1,96 @@
-# du -kh --max-depth=1
-# lsof -p bundle
-# lsof -p 31822
+## zsh info
+function shinfo(){
+  local -a info
+  info=(
+    "user"  "$(id -un)"
+    "group" "$(id -gn)"
+    "host"  "${HOST:-$(hostname)}"
+    "time"  "$(date +%T)"
+  )
 
-#sudo passwd doger     # 设置密码
-#sudo passwd doger -d  # 移除密码，密码登录失效，任何密码不能登录
+  echo "## run info:"
+  # 步长为 2 遍历数组（处理键值对）
+  local k v
+  for k v in "${info[@]}"; do
+    # %-10s 表示左对齐，宽度为 10
+    printf "%-15s %s\n" "$k" "$v"
+  done
 
-# mktemp -d # tmp dir
+  echo 
+  zsh_version
+}
 
+function zsh_version() {
+  zsh --version
+  echo
+  echo "which zsh:    $(which -a zsh)"
+  echo "SHELL:        $SHELL"
+  echo "ZSH_VERSION:  $ZSH_VERSION"
+  echo "SHLVL:        $SHLVL"
+  echo "ZSH:          $ZSH" # omz config
+  # ps -p $$
+}
+
+function zsh_files() {
+  ls -ld ~/.z*
+}
+
+function zsh_version_check() {
+    echo "Checking for updates..."
+    # 检查 brew 是否安装，且当前使用的是否为 brew 版 zsh
+    [[ ! -x "$(command -v brew)" ]] && return
+    [[ "$SHELL" != *"homebrew"* ]] && return
+
+    local cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/zsh_update_last_check"
+    local today=$(date +%Y-%m-%d)
+
+    # 每天只检查一次，避免频繁调用 brew 导致启动变慢
+    if [[ ! -f "$cache_file" || "$(cat "$cache_file")" != "$today" ]]; then
+        (
+            # 在后台运行，不阻塞当前终端启动
+            local latest_version=$(brew info zsh --json | jq -r '.[0].versions.stable' 2>/dev/null)
+            local current_version=$ZSH_VERSION
+            
+            if [[ -n "$latest_version" && "$latest_version" != "$current_version" ]]; then
+                echo -e "\n\033[1;33m[Update]\033[0m A new version of Zsh ($latest_version) is available!"
+                echo -e "Current version: $ZSH_VERSION. Run \033[1;32mbrew upgrade zsh\033[0m to update.\n"
+            fi
+            # 更新检查日期
+            mkdir -p "$(dirname "$cache_file")"
+            echo "$today" > "$cache_file"
+        ) &! # &! 表示在后台运行且不显示任务 ID
+    fi
+}
+
+function zsh_clean_compdump(){
+  # https://github.com/ohmyzsh/ohmyzsh/wiki/FAQ#how-do-i-reset-the-completion-cache
+  # echo $ZSH_COMPDUMP
+
+  ## completion with brew
+  # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+  # rm -f ~/.zcompdump; compinit
+  # l $(brew --prefix)/share/zsh/site-functions
+  
+  # reset zcompinit cache
+  rm -fr ~/.zcompdump*
+  exec zsh -l
+}
+
+# alias root="sudo su"
+# sudo passwd doger     # 设置密码
+# sudo passwd doger -d  # 移除密码，密码登录失效，任何密码不能登录
 # vipw vigr
-# alias realpath='readlink -f'
-#screen, byotu, tmux
-#alias fp="byobu" #fenping
 
 # # 当前在: ~/dev/project1/src
 # cd project1 project2
 # # 自动切换到: ~/dev/project2/src
 
+# du -kh --max-depth=1
 # ls **/*.zsh(.)     # 递归找所有普通文件
 # ls **/*(m-5)      # 递归查找过去 5 天内修改过的文件
 # ls **/*(L+100k)   # 递归查找大小超过 100kb 的文件
-
+# lsof -p bundle
+# lsof -p 31822
 
 #  But, as John points out:
 #    if [ -t 0 ] works ... when you're logged in locally

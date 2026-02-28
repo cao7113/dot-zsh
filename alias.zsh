@@ -1,19 +1,18 @@
 ## aliases
 
-alias opts="getopt"
 alias e="exit"
 alias l="ls -lah"
+alias cmd="command"
 alias has="type -a"
 alias what="whence -a" # which -a
-alias fn="whience -f"
-alias t="task"
+alias fun="whence -f"
+alias opts="getopt"
 
 #alias c="clear" # use Ctrl+l instead
 alias p="pwd"
 # r # builtin r for repeat, Great!!! 
 # r git
 # dirs -v
-alias his=history
 
 # 语法：alias -s 后缀=程序
 alias -s {md,txt}=vim
@@ -37,10 +36,8 @@ alias d="dsh"
 # }
 # compdef _dirs d
 
-alias o="dsh o"
 alias dot="dotrc"
 
 ## vim
 alias vi='vim'
-alias vimrc='vi ~/.vimrc'
-alias svi="sudo vi"
+# alias vimrc='vi ~/.vimrc'

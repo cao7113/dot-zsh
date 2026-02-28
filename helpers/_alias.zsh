@@ -12,5 +12,4 @@ alias -g CA='| pbcopy' # macOS 剪贴板
 # ls -R M
 # cat config.json CA
 
-
 alias virc="vi ~/.vimrc"
