@@ -64,6 +64,8 @@ function dsh(){
   esac
 }
 
+# typeset -fr dsh
+
 function dsh_info() {
   cat <<-EOF
 ## Dsh info with zsh profile

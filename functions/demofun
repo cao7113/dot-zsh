@@ -1,0 +1,21 @@
+#!/bin/zsh
+# 标准 Zsh 函数模板
+
+# 1. 自动处理依赖 (如果需要)
+# (( $+functions[helper_func] )) || autoload -Uz helper_func
+
+# 2. 函数主体 (注意：文件内不要再写 function name { ... })
+# 直接写代码，这样加载速度最快，且符合 -z 风格
+
+local target=$1
+(( $# > 0 )) && shift
+echo "demo zsh fpath function called with $# args: [$target $@]"
+
+# 调用依赖
+# helper_func "$target"
+
+# 3. 提示：如果你希望这个文件既能被 autoload，又能被直接执行
+# 可以加上这个判断（非必须）：
+if [[ "$ZSH_EVAL_CONTEXT" == "toplevel" ]]; then
+    echo "This file was executed directly!"
+fi

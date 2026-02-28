@@ -6,7 +6,15 @@ includes:
 tasks:
   default: Happy with dsh!
   bench: time zsh -lic "exit"
+
+  doc: |
+    mkdir -p doc
+    cd doc
+
+    man zshbuiltins | col -b > zshbuiltins.txt
   
+  ## Setup
+
   setup: |
     task rc.ln
     
@@ -15,6 +23,12 @@ tasks:
 
   rc: ls -ld ~/.z*
   rc.ln: |
+    # todo better refactor
+    [ -f ~/.zshrc ] && {
+      bakfile=~/.zshrc.bak-$(date '+%Y-%m-%dT%H-%M-%S')
+      mv ~/.zshrc $bakfile
+      echo "backup into $bakfile"
+    }
     ln -sf {{.TASKFILE_DIR}}/main.zsh ~/.zshrc
     ln -sf {{.TASKFILE_DIR}} ~/.zsh
   rc.rm: rm ~/.zshrc

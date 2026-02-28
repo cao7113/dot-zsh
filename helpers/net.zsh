@@ -45,7 +45,6 @@ function host_ip(){
 # nc -zv zkfair.test.ip 5672
 
 alias myip="publicip"
-alias lip=ip
 function ip(){
   iface=${1:-en0}
   echo "#iface: $iface ip"

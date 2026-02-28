@@ -4,13 +4,13 @@ alias zshcmd="command zsh"
 function zsh(){
   local act=${1:-info}
   case $act in
-    info)
+    i|info)
       zsh_info
       ;;
-    v)
+    v|version)
       zsh --version
       ;;
-    files)
+    f|files)
       zsh_files
       ;;
     *)
@@ -22,6 +22,7 @@ function zsh_info() {
   echo "## Shell info"
   echo "SHELL:        $SHELL" # which -a zsh
   echo "SHLVL:        $SHLVL"
+  echo "ZSH_NAME:     $ZSH_NAME"
   echo "ZSH_VERSION:  $ZSH_VERSION" # zsh --version
   echo "ZSH:          $ZSH"   # omz config
 }

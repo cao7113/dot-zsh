@@ -11,7 +11,7 @@ alias l="ls -lah"
 alias cmd="command"
 alias has="type -a"
 alias what="whence -a" # which -a
-alias fun="whence -f"
+alias fun="whence -f" # functions xxx
 alias opts="getopt"
 
 #alias c="clear" # use Ctrl+l instead

@@ -1,0 +1,5 @@
+#!/bin/zsh
+set -e
+
+echo "## this is just demo test"
+echo $SHELL

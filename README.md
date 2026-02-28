@@ -18,6 +18,10 @@ ls -l ~/.zsh_dots/
 - `task setup`
 - new session auto-load `~/.zshrc` as soft-link
 
+## todo
+
+- auto tests
+
 ## Links
 
 - [dotfiles on Github](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)

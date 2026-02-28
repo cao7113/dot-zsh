@@ -3,3 +3,31 @@
 version: '3'
 tasks:
   default: echo hi shells
+
+  t: |
+    # Task 默认并不使用你当前的交互式 Shell（如 Zsh），而是默认启动 /bin/sh
+    ps -p $$ 
+
+    if [ -n "$ZSH_VERSION" ]; then
+      echo "Running in Zsh"
+    elif [ -n "$BASH_VERSION" ]; then
+      echo "Running in Bash"
+    else
+      echo "Running in standard sh (or something else)"
+    fi
+
+    echo $SHELL # /bin/zsh
+    # 为什么 $SHELL 会误导你？echo $SHELL 输出的是 /bin/zsh。这是因为 $SHELL 是一个环境变量，它存储的是你的“首选登录 Shell”
+    # 而不是当前正在执行命令的那个“解释器进程”。
+
+    # blanks # ok, command in PATH
+
+    # dsh info # failed as function not available unless source it
+    
+    # zsh feature test
+    zsh -c '
+      typeset -a arr
+      arr=(1 2)
+      print -l $arr
+    '
+    
