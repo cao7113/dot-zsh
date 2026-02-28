@@ -21,7 +21,7 @@ function show_paths() {
   done
 }
 
-function fpath(){
+function fpaths(){
   print -l $fpath
   # print -l $FPATH
 }

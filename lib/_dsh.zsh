@@ -52,6 +52,9 @@ function dsh(){
     home)
       echo $DSH_HOME
       ;;
+    ohome)
+      echo $ZSH
+      ;;
     v|version)
       zsh_version
       ;;

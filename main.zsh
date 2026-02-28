@@ -9,7 +9,6 @@ if (( ! ${+_ZSHRC_FILE} )); then
   source "${DSH_HOME}/lib/_dsh.zsh"
   source "${DSH_HOME}/lib/debug.zsh"
   source "${DSH_HOME}/lib/sourcer.zsh"
-  source "${DSH_HOME}/lib/zsh.zsh"
   source "${DSH_HOME}/lib/dotrc.zsh"
   source "${DSH_HOME}/alias.zsh"
 fi

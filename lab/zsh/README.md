@@ -8,13 +8,11 @@
 - stand on sh, csh, ksh
 
 ```
-
-
 ARGC is alias to $#
-
+# type -f tl
+# whence -f tl
+functions tl
 ```
-
-`ls -ld ~/.z*`
 
 ## Features
 

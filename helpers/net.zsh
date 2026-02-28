@@ -1,35 +1,4 @@
-alias ports="sudo netstat -lnput"
-
-function netspeed() {
-  url=${1:-http://mirrors.163.com/ubuntu-releases/18.04/ubuntu-18.04.4-desktop-amd64.iso}
-  curl $url >/dev/null
-}
-
-#get specified interface's ip address
-# $1: specified interface, e.g. wlan0, lo, eth0
-# return string, e.g. 127.0.0.1
-function host_ip(){
-  iface=${1:-en0} # eth0
-  ifconfig $iface | grep -o 'inet [^ ]*' | awk '{print $2}'
-}
-# export -f host_ip
-
-
-## ops
-# dig telnet non interactive
-# nc -zv zkfair.test.ip 5672
-
-alias sshv="command ssh -v"
-alias hctl=hostctl
-
-alias myip="publicip"
-alias lip=ip
-function ip(){
-  iface=${1:-en0}
-  echo "#iface: $iface ip"
-  ipconfig getifaddr $iface
-}
-
+# alias ports="sudo netstat -lnput"
 function ports(){
   case $OSTYPE in
     darwin*)
@@ -54,6 +23,33 @@ function ports(){
   #    lsof -nP -iTCP:4000 |grep LISTEN|awk '{print $2;}'
   #    输出占用该端口的 PID
   #Note
+}
+
+function netspeed() {
+  url=${1:-http://mirrors.163.com/ubuntu-releases/18.04/ubuntu-18.04.4-desktop-amd64.iso}
+  curl $url >/dev/null
+}
+
+#get specified interface's ip address
+# $1: specified interface, e.g. wlan0, lo, eth0
+# return string, e.g. 127.0.0.1
+function host_ip(){
+  iface=${1:-en0} # eth0
+  ifconfig $iface | grep -o 'inet [^ ]*' | awk '{print $2}'
+}
+# export -f host_ip
+
+
+## ops
+# dig telnet non interactive
+# nc -zv zkfair.test.ip 5672
+
+alias myip="publicip"
+alias lip=ip
+function ip(){
+  iface=${1:-en0}
+  echo "#iface: $iface ip"
+  ipconfig getifaddr $iface
 }
 
 # function localip(){
