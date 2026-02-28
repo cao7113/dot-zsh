@@ -2,7 +2,7 @@
 set -e
 
 # 高效输出 x 个换行
-printf '\n%.0s' {1..10}
+printf '\n%.0s' {1..30}
 
 # 或者使用真正的清屏并保留回滚记录
 # tput clear Ctrl + l

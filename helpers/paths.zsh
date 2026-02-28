@@ -1,4 +1,8 @@
-## paths related
+## command search path
+
+## $path builtin bind to $PATH
+# path=(path1 $paths) # prepend path
+# path+=path1         # append path
 
 alias paths='show_paths'
 

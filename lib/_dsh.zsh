@@ -56,7 +56,7 @@ function dsh(){
       echo $ZSH
       ;;
     v|version)
-      zsh_version
+      zsh_info
       ;;
     *)
       cd $DSH_HOME

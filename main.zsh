@@ -11,6 +11,9 @@ if (( ! ${+_ZSHRC_FILE} )); then
   source "${DSH_HOME}/lib/sourcer.zsh"
   source "${DSH_HOME}/lib/dotrc.zsh"
   source "${DSH_HOME}/alias.zsh"
+
+  # path+=("${DSH_HOME}/bin")
+  path=("${DSH_HOME}/bin" $path)
 fi
 
 checkout_profile

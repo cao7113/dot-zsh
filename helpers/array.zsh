@@ -27,4 +27,3 @@ function print_array() {
     # 3. 打印输出
     printf '%s\n' "${target_arr[@]}" | nl -w 2 -s ': '
 }
-

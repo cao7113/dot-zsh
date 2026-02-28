@@ -1,41 +1,36 @@
 ## zsh info
-function shinfo(){
-  local -a info
-  info=(
-    "user"  "$(id -un)"
-    "group" "$(id -gn)"
-    "host"  "${HOST:-$(hostname)}"
-    "time"  "$(date +%T)"
-  )
+alias zshcmd="command zsh"
 
-  echo "## run info:"
-  # 步长为 2 遍历数组（处理键值对）
-  local k v
-  for k v in "${info[@]}"; do
-    # %-10s 表示左对齐，宽度为 10
-    printf "%-15s %s\n" "$k" "$v"
-  done
-
-  echo 
-  zsh_version
+function zsh(){
+  local act=${1:-info}
+  case $act in
+    info)
+      zsh_info
+      ;;
+    v)
+      zsh --version
+      ;;
+    files)
+      zsh_files
+      ;;
+    *)
+      zshcmd "$@"
+  esac
 }
 
-function zsh_version() {
-  zsh --version
-  echo
-  echo "which zsh:    $(which -a zsh)"
-  echo "SHELL:        $SHELL"
-  echo "ZSH_VERSION:  $ZSH_VERSION"
+function zsh_info() {
+  echo "## Shell info"
+  echo "SHELL:        $SHELL" # which -a zsh
   echo "SHLVL:        $SHLVL"
-  echo "ZSH:          $ZSH" # omz config
-  # ps -p $$
+  echo "ZSH_VERSION:  $ZSH_VERSION" # zsh --version
+  echo "ZSH:          $ZSH"   # omz config
 }
 
-function zfiles() {
+function zsh_files() {
   ls -ld ~/.z*
 }
 
-function zsh_version_check() {
+function zsh_info_check() {
     echo "Checking for updates..."
     # 检查 brew 是否安装，且当前使用的是否为 brew 版 zsh
     [[ ! -x "$(command -v brew)" ]] && return
