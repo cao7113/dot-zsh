@@ -22,9 +22,7 @@ if (( ! ${+_DSHRC_FILE} )); then
 
   # 1. 必须开启扩展通配符
   setopt EXTENDED_GLOB
-
   fpath=("${DSH_HOME}/functions" $fpath)
-
   # 2. ^*.md 表示匹配所有文件，但排除以 .md 结尾的文件
   # (N.:t) 含义：N (找不到时不报错), . (只匹配普通文件), :t (只取文件名)
   for func in "${DSH_HOME}/functions"/^*.md(N.:t); do

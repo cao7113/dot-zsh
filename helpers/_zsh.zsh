@@ -97,6 +97,11 @@ function zsh_clean_compdump(){
 #   1: interactive, non-login shell
 function is_interactive_sh(){
   [[ -t "0" || -p /dev/stdin ]] && return 0 || return 1
+
+  # # 检查是否为交互式 (返回 i 说明是)
+  # [[ $- == *i* ]] && echo "Interactive"
+  # # 检查是否为登录式 (返回 true 说明是)
+  # [[ -o login ]] && echo "Login shell"
 }
 
 # parameters

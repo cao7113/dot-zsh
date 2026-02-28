@@ -2,10 +2,8 @@
 # https://taskfile.dev/reference/templating/
 version: '3'
 tasks:
-  default: echo hi shells
-
-  t: |
-    # Task 默认并不使用你当前的交互式 Shell（如 Zsh），而是默认启动 /bin/sh
+  default: |
+    # Task 默认并不使用你当前的交互式 Shell(maybe zsh)，而是默认启动 /bin/sh
     ps -p $$ 
 
     if [ -n "$ZSH_VERSION" ]; then

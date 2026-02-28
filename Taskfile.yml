@@ -5,7 +5,27 @@ includes:
   ant: profiles/ant/Taskfile.yml
 tasks:
   default: Happy with dsh!
-  bench: time zsh -lic "exit"
+  
+  bench: |
+    # time zsh -lic "exit"
+    # time ( zsh -il -c "exit" ) # test in isolation subshell process
+    # hyperfine --ignore-failure 'zsh -lic "exit"'
+
+    # 启动一个带 zprof 监控的 zsh 交互 shell
+    zsh -i -l -c '
+      # 加载性能分析模块
+      zmodload zsh/zprof
+
+      source ~/.zshrc
+      # 清屏让输出更好看
+      clear
+
+      # 显示分析结果
+      # 第1列是调用次数，第2列是总耗时(ms)，第3列是平均耗时
+      zprof | head -n 20
+
+      exit
+    '
 
   doc: |
     mkdir -p doc

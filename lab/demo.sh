@@ -10,9 +10,13 @@ echo $SHELL # /bin/zsh
 # dsh info # command not found: dsh, should explicit source it
 
 echo "## ok: run command in PATH"
-zdemo
+demo-cli
 
 typeset -a arr
 arr=(1 2)
 # why print: command not found --> print是zsh的函数
 print -l $arr
+
+# not-work, no the required fpath, or zsh -il
+# demofun
+# print -l $fpath
