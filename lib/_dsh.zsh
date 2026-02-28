@@ -69,7 +69,7 @@ function dsh_info() {
 ## Dsh info with zsh profile
 
 # DSH_HOME          =   $DSH_HOME
-# _ZSHRC_FILE       =   $_ZSHRC_FILE
+# _DSHRC_FILE       =   $_DSHRC_FILE
 # _DSH_PROFILE_RC   =   $_DSH_PROFILE_RC
 # _DSH_PROFILE_DIR  =   $_DSH_PROFILE_DIR
 EOF

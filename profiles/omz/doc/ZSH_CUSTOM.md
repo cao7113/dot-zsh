@@ -22,13 +22,13 @@ OMZ 的初始化脚本（`oh-my-zsh.sh`）会按照预定的顺序扫描目录�
 
 #### 方案一：在 `_core.zsh` 中手动模拟（推荐）
 
-既然你已经有了 `_ZSHRC_DIR` 路径，你可以建立一个 `custom` 文件夹，并在加载插件前后手动 source 它们。
+既然你已经有了 `_DSHRC_DIR` 路径，你可以建立一个 `custom` 文件夹，并在加载插件前后手动 source 它们。
 
 在你的 `_core.zsh` 或 `raw.zsh` 中加入：
 
 ```zsh
 # 定义你的自定义目录
-readonly DSH_CUSTOM="$_ZSHRC_DIR/custom"
+readonly DSH_CUSTOM="$_DSHRC_DIR/custom"
 
 # 1. 自动加载 custom 下的所有 .zsh 文件 (模拟 OMZ 的自动加载)
 # (N) 标志表示如果目录为空，不报错
@@ -89,8 +89,8 @@ dot-zsh/
 
 ```zsh
 # 模拟 OMZ 自定义功能
-if [[ -d "$_ZSHRC_DIR/custom" ]]; then
-  for f in "$_ZSHRC_DIR/custom"/*.zsh(N); do
+if [[ -d "$_DSHRC_DIR/custom" ]]; then
+  for f in "$_DSHRC_DIR/custom"/*.zsh(N); do
     source "$f"
   done
 fi
