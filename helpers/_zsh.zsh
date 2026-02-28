@@ -31,7 +31,7 @@ function zsh_version() {
   # ps -p $$
 }
 
-function zsh_files() {
+function zfiles() {
   ls -ld ~/.z*
 }
 
